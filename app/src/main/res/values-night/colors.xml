@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="surfaceColorPrimary">#2C2C2C</color>
+    <color name="textColorPrimary">@color/white</color>
+    <color name="textColorSecond">#aaaaaa</color>
+</resources>
