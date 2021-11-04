@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView
-    android:id="@+id/photo"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:scaleType="centerCrop"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingEnd="@dimen/padding_item_photo"
-    android:paddingBottom="@dimen/padding_item_photo"
-    tools:src="@drawable/ic_launcher_background"
-    />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="@dimen/padding_item_photo"
+        android:scaleType="centerCrop"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:button="@drawable/custom_checkbox"
+        app:layout_constraintStart_toStartOf="@+id/photo"
+        app:layout_constraintTop_toTopOf="@+id/photo"
+        tools:checked="true"
+        tools:visibility="visible"
+        android:visibility="gone"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

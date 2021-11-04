@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,31 +21,46 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.dev.android.album.MainActivity;
+import com.dev.android.album.R;
 import com.dev.android.album.core.constants.Constants;
 import com.dev.android.album.core.utils.Utils;
 import com.dev.android.album.data.models.MediaStoreImage;
 import com.dev.android.album.data.models.Photo;
 import com.dev.android.album.databinding.FragmentHomeBinding;
-
-import com.dev.android.album.feature.home.adapter.HomeAdapter;
 import com.dev.android.album.feature.home.loading.QueryImages;
 import com.dev.android.album.feature.home.section.PhotoSection;
 import com.dev.android.album.core.platform.SectionedRecyclerViewAdapter;
+import com.dev.android.album.feature.viewmodel.HomeViewModel;
+import com.google.android.material.appbar.AppBarLayout;
+import com.yalantis.ucrop.UCrop;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements View.OnClickListener, QueryImages.CallBack {
+public class HomeFragment extends Fragment implements
+        View.OnClickListener,
+        PhotoSection.ClickListener {
+
+    public static boolean isLongClick = false;
+
+    private final List<Photo> data = new ArrayList<>();
+
     private FragmentHomeBinding binding;
     private SectionedRecyclerViewAdapter sectionedAdapter;
-    private List<Photo> data = new ArrayList<>();
-    private GridLayoutManager glm;
+    private HomeViewModel viewModel;
+    private PhotoSection section = null;
+
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -52,9 +68,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Quer
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadAllPhoto();
+        viewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         setupListener();
+        setUpAdapter();
+        onHideCheckBoxMode();
+        handleTitleToolBar();
     }
+
 
     private void loadAllPhoto() {
         if (haveStoragePermission()) {
@@ -82,25 +102,41 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Quer
 
 
     private void showImages() {
-        QueryImages query = new QueryImages(getActivity().getApplication());
-        query.setCallBack(this);
+        QueryImages query = new QueryImages(requireActivity().getApplication());
+        query.setCallBack(new QueryImages.CallBack() {
+            @Override
+            public void onSuccess(List<MediaStoreImage> allPhoto) {
+                data.clear();
+                data.addAll(Utils.groupPhotoByDate(requireContext(), allPhoto));
+                setUpAdapter();
+                binding.rcvHome.setVisibility(View.VISIBLE);
+                binding.noData.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError(String message) {
+                binding.noData.setVisibility(View.VISIBLE);
+                binding.rcvHome.setVisibility(View.GONE);
+            }
+        });
         query.execute();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setUpAdapter() {
         sectionedAdapter = new SectionedRecyclerViewAdapter();
-        data.forEach(item -> sectionedAdapter.
-                addSection(new PhotoSection(
-                        item.getTitle(),
-                        item.getItems(),
-                        Utils.getDeviceWidth(requireContext()))));
-        glm=new GridLayoutManager(requireContext(), Constants.SPAN_COUNT);
+        data.forEach(item -> {
+            sectionedAdapter.addSection(
+                    new PhotoSection(
+                            item.getTitle(),
+                            item.getItems(),
+                            Utils.getDeviceWidth(requireContext()), this));
+        });
+        GridLayoutManager glm = new GridLayoutManager(requireContext(), Constants.SPAN_COUNT);
         glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 if (sectionedAdapter.getSectionItemViewType(position) == SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER) {
-                    return 4;
+                    return Constants.SPAN_COUNT;
                 }
                 return 1;
             }
@@ -113,6 +149,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Quer
 
     }
 
+
+    private void handleTitleToolBar() {
+        binding.appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset < 250) {
+                    if (binding.titleToolBar.getVisibility() == View.GONE)
+                        binding.titleToolBar.setVisibility(View.VISIBLE);
+                    isShow = true;
+                } else if (isShow) {
+                    binding.titleToolBar.setVisibility(View.GONE);
+                    isShow = false;
+                }
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -121,28 +180,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Quer
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public void onStart() {
+        super.onStart();
+        loadAllPhoto();
     }
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case READ_EXTERNAL_STORAGE_REQUEST:
-                if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
-                    showImages();
-                } else {
-                    boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
-                            Manifest.permission.READ_EXTERNAL_STORAGE);
-                    if (showRationale) {
+        if (requestCode == READ_EXTERNAL_STORAGE_REQUEST) {
+            if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
+                showImages();
+            } else {
+                boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE);
+                if (showRationale) {
 
-                    } else {
-                        goToSettings();
-                    }
+                } else {
+                    goToSettings();
                 }
-                break;
+            }
         }
     }
 
@@ -154,22 +211,35 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Quer
         startActivity(intent);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onSuccess(List<MediaStoreImage> data) {
-        this.data.addAll(Utils.convertMediaStoreImageToListPhoto(data));
-        setUpAdapter();
 
-//        List<MediaStoreImage> list=new ArrayList<>();
-//        list.addAll(data);
-//        HomeAdapter adapter=new HomeAdapter(requireContext(),list,Utils.getDeviceWidth(requireContext()));
-//        glm=new GridLayoutManager(requireContext(), Constants.SPAN_COUNT);
-//        binding.rcvHome.setLayoutManager(glm);
-//        binding.rcvHome.setAdapter(adapter);
+    @Override
+    public void onItemRootViewClicked(View view, @NonNull PhotoSection section, int itemAdapterPosition) {
+        if (!isLongClick) {
+            int pos = sectionedAdapter.getAdapterForSection(section).getPositionInSection(itemAdapterPosition);
+            Navigation.findNavController(view).navigate(R.id.navigateToViewPhoto);
+            viewModel.setPhoto(section.getList().get(pos));
+            viewModel.setListPhoto(data);
+        }
     }
 
     @Override
-    public void onError(String message) {
-
+    public void onItemLongClick(View view, @NonNull PhotoSection section, int itemAdapterPosition) {
+        this.section = section;
+        sectionedAdapter.getAdapterForSection(section).notifyAllItemsChanged(new PhotoSection.ItemPhotoUpdate());
+        isLongClick = true;
     }
+
+    private void onHideCheckBoxMode() {
+        viewModel.isHideCheckBox.observe(getViewLifecycleOwner(), isHide -> {
+            if (isHide)
+                sectionedAdapter.getAdapterForSection(section).notifyAllItemsChanged();
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }

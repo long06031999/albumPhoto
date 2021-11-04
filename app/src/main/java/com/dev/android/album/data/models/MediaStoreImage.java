@@ -1,10 +1,12 @@
 package com.dev.android.album.data.models;
 
 import android.net.Uri;
+import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MediaStoreImage {
+public class MediaStoreImage implements Comparable<MediaStoreImage>, Serializable {
     private Long id;
     private String displayName;
     private Date dateAdded;
@@ -21,32 +23,44 @@ public class MediaStoreImage {
         return id;
     }
 
-    public void setId(Long id) {
+    public MediaStoreImage setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getDisplayName() {
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
+    public MediaStoreImage setDisplayName(String displayName) {
         this.displayName = displayName;
+        return this;
     }
 
     public Date getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(Date dateAdded) {
+    public Long getTime(){
+        return dateAdded.getTime();
+    }
+
+    public MediaStoreImage setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
+        return this;
     }
 
     public Uri getContentUri() {
         return contentUri;
     }
 
-    public void setContentUri(Uri contentUri) {
+    public MediaStoreImage setContentUri(Uri contentUri) {
         this.contentUri = contentUri;
+        return this;
     }
 
+    @Override
+    public int compareTo(MediaStoreImage mediaStoreImage) {
+        return getTime().compareTo(mediaStoreImage.getTime());
+    }
 }

@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class QueryImages extends AsyncTask<Void, Void, List<MediaStoreImage>> {
-    private ArrayList<MediaStoreImage> images = new ArrayList<>();
-    private Application application;
+    private final ArrayList<MediaStoreImage> images = new ArrayList<>();
+    private final Application application;
     private CallBack callback;
 
     public QueryImages(Application application) {
@@ -71,7 +71,7 @@ public class QueryImages extends AsyncTask<Void, Void, List<MediaStoreImage>> {
     protected void onPostExecute(List<MediaStoreImage> mediaStoreImages) {
         super.onPostExecute(mediaStoreImages);
         if(mediaStoreImages.size()>0)
-            callback.onSuccess(mediaStoreImages);
+            callback.onSuccess(mediaStoreImages);//khi query data xong
         else
             callback.onError("No photos were found in your device");
     }

@@ -10,5 +10,24 @@
         android:name="com.dev.android.album.feature.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/navigateToViewPhoto"
+            app:destination="@+id/fragmentViewPhoto" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentViewPhoto"
+        android:name="com.dev.android.album.feature.view.ViewPhotoFragment"
+        tools:layout="@layout/fragment_view_photo">
+        <action
+            android:id="@+id/navigateToEditPhoto"
+            app:destination="@+id/fragmentEdit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentEdit"
+        android:name="com.dev.android.album.feature.edit.EditFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_edit">
+    </fragment>
+
 </navigation>

@@ -1,5 +1,24 @@
 <resources>
-    <string name="app_name">albumPhoto</string>
-    <string name="title_home">Home</string>
+    <string name="app_name" translatable="false">Photo</string>
+    <string name="title_home" translatable="false">Home</string>
     <string name="photo">Hình ảnh</string>
+    <string name="delete">Xoá</string>
+    <string name="cancel">Thoát</string>
+    <string name="confirm">Bạn có chắc muốn xoá ảnh?</string>
+    <string name="today">Hôm nay</string>
+    <string name="yesterday">Hôm qua</string>
+    <string name="msg_share_image">Chia sẻ hình ảnh</string>
+    <string name="label_text" translatable="false">Text</string>
+    <string name="label_shape" translatable="false">Shape</string>
+    <string name="label_oval" translatable="false">Oval</string>
+    <string name="label_rectangle" translatable="false">Rectangle</string>
+    <string name="label_line" translatable="false">Line</string>
+    <string name="label_emoji" translatable="false">Emoji</string>
+    <string name="label_sticker" translatable="false">Sticker</string>
+    <string name="label_eraser" translatable="false">Eraser</string>
+    <string name="label_eraser_mode" translatable="false">Eraser Mode</string>
+    <string name="label_filter" translatable="false">Filter</string>
+    <string name="label_adjust" translatable="false">Adjust</string>
+    <string name="label_brush" translatable="false">Brush</string>
+    <string name="msg_save_image">Are you want to exit without saving image ?</string>
 </resources>

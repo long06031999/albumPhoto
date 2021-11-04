@@ -2,6 +2,7 @@ package com.dev.android.album.feature.home.section;
 
 import android.net.Uri;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,7 +25,10 @@ public class PhotoSection extends Section {
     private int width;
     private ClickListener clickListener;
 
-    public PhotoSection(@NonNull final String title, @NonNull List<MediaStoreImage> list, int width) {
+    int selected = -1;
+    int preSelected;
+
+    public PhotoSection(@NonNull final String title, @NonNull List<MediaStoreImage> list, int width, ClickListener clickListener) {
         super(SectionParameters.builder()
                 .itemResourceId(R.layout.item_photo)
                 .headerResourceId(R.layout.item_header)
@@ -32,9 +36,6 @@ public class PhotoSection extends Section {
         this.title = title;
         this.list = list;
         this.width = width;
-    }
-
-    public void setClickListener(ClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
@@ -61,23 +62,34 @@ public class PhotoSection extends Section {
     }
 
     @Override
+    public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position, List<Object> payloads) {
+        final ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+        for (Object obj : payloads) {
+            if (obj instanceof ItemPhotoUpdate) {
+                itemViewHolder.bindDatUpdate(list.get(position).getContentUri());
+            }
+        }
+    }
+
+
+    @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder) {
         final HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
         headerViewHolder.bindData(title);
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         ImageView photo;
+        CheckBox checkBox;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             photo = itemView.findViewById(R.id.photo);
+            checkBox = itemView.findViewById(R.id.checkbox);
             itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            clickListener.onItemRootViewClicked(PhotoSection.this, getAdapterPosition());
+            itemView.setOnLongClickListener(this);
+            checkBox.setOnClickListener(this);
         }
 
         public void bindData(Uri item) {
@@ -89,7 +101,40 @@ public class PhotoSection extends Section {
                     .centerCrop()
                     .into(photo);
         }
+
+        public void bindDatUpdate(Uri item) {
+            photo.getLayoutParams().width = width / Constants.SPAN_COUNT;
+            photo.getLayoutParams().height = width / Constants.SPAN_COUNT;
+            Glide.with(photo)
+                    .load(item)
+                    .thumbnail(0.33f)
+                    .centerCrop()
+                    .into(photo);
+            checkBox.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.checkbox:
+                    if (!checkBox.isChecked())
+                        checkBox.setSelected(true);
+                    else
+                        checkBox.setSelected(false);
+                    break;
+                default:
+                    clickListener.onItemRootViewClicked(view, PhotoSection.this, getAdapterPosition());
+                    break;
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            clickListener.onItemLongClick(view, PhotoSection.this, getAdapterPosition());
+            return false;
+        }
     }
+
 
     class HeaderViewHolder extends RecyclerView.ViewHolder {
         private TextView tvHeader;
@@ -104,7 +149,18 @@ public class PhotoSection extends Section {
         }
     }
 
-    interface ClickListener {
-        void onItemRootViewClicked(@NonNull final PhotoSection section, final int itemAdapterPosition);
+    public interface ClickListener {
+        void onItemRootViewClicked(View view, @NonNull final PhotoSection section, final int itemAdapterPosition);
+
+        void onItemLongClick(View view, @NonNull final PhotoSection section, final int itemAdapterPosition);
     }
+
+    public List<MediaStoreImage> getList() {
+        return list;
+    }
+
+
+    public static class ItemPhotoUpdate {
+    }
+
 }
