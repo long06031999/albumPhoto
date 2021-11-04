@@ -1,4 +1,4 @@
-package com.paulbaker.album.feature.view.adapter;
+package com.paulbaker.album.feature.viewphoto.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 
 import com.paulbaker.album.data.models.MediaStoreImage;
-import com.paulbaker.album.feature.view.pager.ViewPagerFragment;
+import com.paulbaker.album.feature.viewphoto.pager.ViewPagerFragment;
 
 import java.util.List;
 
