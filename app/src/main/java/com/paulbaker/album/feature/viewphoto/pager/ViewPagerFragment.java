@@ -1,4 +1,4 @@
-package com.paulbaker.album.feature.view.pager;
+package com.paulbaker.album.feature.viewphoto.pager;
 
 import android.net.Uri;
 import android.os.Bundle;

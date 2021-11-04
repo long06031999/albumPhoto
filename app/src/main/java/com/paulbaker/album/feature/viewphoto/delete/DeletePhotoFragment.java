@@ -1,4 +1,4 @@
-package com.paulbaker.album.feature.view.delete;
+package com.paulbaker.album.feature.viewphoto.delete;
 
 import static android.app.Activity.RESULT_OK;
 

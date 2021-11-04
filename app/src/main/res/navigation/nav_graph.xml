@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentViewPhoto"
-        android:name="com.paulbaker.album.feature.view.ViewPhotoFragment"
+        android:name="com.paulbaker.album.feature.viewphoto.ViewPhotoFragment"
         tools:layout="@layout/fragment_view_photo">
         <action
             android:id="@+id/navigateToEditPhoto"

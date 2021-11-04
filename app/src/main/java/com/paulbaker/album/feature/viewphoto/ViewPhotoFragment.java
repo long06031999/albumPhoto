@@ -1,4 +1,4 @@
-package com.paulbaker.album.feature.view;
+package com.paulbaker.album.feature.viewphoto;
 
 
 import android.annotation.SuppressLint;
@@ -26,8 +26,8 @@ import com.paulbaker.album.core.utils.Utils;
 import com.paulbaker.album.data.models.MediaStoreImage;
 import com.paulbaker.album.data.models.Photo;
 import com.paulbaker.album.feature.home.adapter.HorizonAdapter;
-import com.paulbaker.album.feature.view.adapter.ViewPagerAdapter;
-import com.paulbaker.album.feature.view.delete.DeletePhotoFragment;
+import com.paulbaker.album.feature.viewphoto.adapter.ViewPagerAdapter;
+import com.paulbaker.album.feature.viewphoto.delete.DeletePhotoFragment;
 import com.paulbaker.album.feature.viewmodel.EditViewModel;
 import com.paulbaker.album.feature.viewmodel.HomeViewModel;
 
