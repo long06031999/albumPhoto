@@ -1,0 +1,156 @@
+com/paulbaker/album/core/platform/BottomSheetDialogCorner.java
+ com.paulbaker.album.core.platform.BottomSheetDialogCorner
+album/databinding/ItemPhotoBinding.java
+ album.databinding.ItemPhotoBinding
+com/paulbaker/album/feature/edit/tools/TextEditorDialogFragment.java
+ com.paulbaker.album.feature.edit.tools.TextEditorDialogFragment
+ com.paulbaker.album.feature.edit.tools.TextEditorDialogFragment$1
+ com.paulbaker.album.feature.edit.tools.TextEditorDialogFragment$2
+ com.paulbaker.album.feature.edit.tools.TextEditorDialogFragment$TextEditor
+com/paulbaker/album/core/platform/SectionParameters.java
+ com.paulbaker.album.core.platform.SectionParameters
+ com.paulbaker.album.core.platform.SectionParameters$1
+ com.paulbaker.album.core.platform.SectionParameters$Builder
+com/paulbaker/album/core/platform/SectionPositionIdentifier.java
+ com.paulbaker.album.core.platform.SectionPositionIdentifier
+album/databinding/RowFilterViewBinding.java
+ album.databinding.RowFilterViewBinding
+album/databinding/ItemHorizonBinding.java
+ album.databinding.ItemHorizonBinding
+album/databinding/FragmentBottomShapesDialogBinding.java
+ album.databinding.FragmentBottomShapesDialogBinding
+com/paulbaker/album/feature/edit/tools/PropertiesBSFragment.java
+ com.paulbaker.album.feature.edit.tools.PropertiesBSFragment
+ com.paulbaker.album.feature.edit.tools.PropertiesBSFragment$1
+ com.paulbaker.album.feature.edit.tools.PropertiesBSFragment$Properties
+album/databinding/ActivityMainBinding.java
+ album.databinding.ActivityMainBinding
+com/paulbaker/album/core/platform/Section.java
+ com.paulbaker.album.core.platform.Section
+ com.paulbaker.album.core.platform.Section$1
+ com.paulbaker.album.core.platform.Section$State
+com/paulbaker/album/feature/viewmodel/EditViewModel.java
+ com.paulbaker.album.feature.viewmodel.EditViewModel
+com/paulbaker/album/feature/view/pager/ViewPagerFragment.java
+ com.paulbaker.album.feature.view.pager.ViewPagerFragment
+com/paulbaker/album/feature/edit/FilterListener.java
+ com.paulbaker.album.feature.edit.FilterListener
+com/paulbaker/album/MainActivity.java
+ com.paulbaker.album.MainActivity
+album/databinding/FragmentPagerBinding.java
+ album.databinding.FragmentPagerBinding
+album/databinding/BottomSheetDeletePhotoBinding.java
+ album.databinding.BottomSheetDeletePhotoBinding
+com/paulbaker/album/feature/home/adapter/HorizonAdapter.java
+ com.paulbaker.album.feature.home.adapter.HorizonAdapter
+ com.paulbaker.album.feature.home.adapter.HorizonAdapter$ListenerItemClick
+ com.paulbaker.album.feature.home.adapter.HorizonAdapter$ViewHolder
+com/paulbaker/album/feature/viewmodel/HomeViewModel.java
+ com.paulbaker.album.feature.viewmodel.HomeViewModel
+com/paulbaker/album/feature/home/loading/QueryImages.java
+ com.paulbaker.album.feature.home.loading.QueryImages
+ com.paulbaker.album.feature.home.loading.QueryImages$CallBack
+com/paulbaker/album/feature/edit/adapter/EditingToolsAdapter.java
+ com.paulbaker.album.feature.edit.adapter.EditingToolsAdapter
+ com.paulbaker.album.feature.edit.adapter.EditingToolsAdapter$OnItemSelected
+ com.paulbaker.album.feature.edit.adapter.EditingToolsAdapter$ToolModel
+ com.paulbaker.album.feature.edit.adapter.EditingToolsAdapter$ViewHolder
+album/databinding/ItemPhotoBoundBinding.java
+ album.databinding.ItemPhotoBoundBinding
+com/paulbaker/album/feature/edit/tools/EmojiBSFragment.java
+ com.paulbaker.album.feature.edit.tools.EmojiBSFragment
+ com.paulbaker.album.feature.edit.tools.EmojiBSFragment$1
+ com.paulbaker.album.feature.edit.tools.EmojiBSFragment$EmojiAdapter
+ com.paulbaker.album.feature.edit.tools.EmojiBSFragment$EmojiAdapter$ViewHolder
+ com.paulbaker.album.feature.edit.tools.EmojiBSFragment$EmojiAdapter$ViewHolder$1
+ com.paulbaker.album.feature.edit.tools.EmojiBSFragment$EmojiListener
+com/paulbaker/album/data/models/MediaStoreImage.java
+ com.paulbaker.album.data.models.MediaStoreImage
+com/paulbaker/album/feature/view/ViewPhotoFragment.java
+ com.paulbaker.album.feature.view.ViewPhotoFragment
+com/paulbaker/album/feature/home/HomeFragment.java
+ com.paulbaker.album.feature.home.HomeFragment
+ com.paulbaker.album.feature.home.HomeFragment$1
+ com.paulbaker.album.feature.home.HomeFragment$2
+ com.paulbaker.album.feature.home.HomeFragment$3
+com/paulbaker/album/feature/view/delete/DeletePhotoAsyncTask.java
+ com.paulbaker.album.feature.view.delete.DeletePhotoAsyncTask
+ com.paulbaker.album.feature.view.delete.DeletePhotoAsyncTask$CallBackForDeletePhoto
+album/databinding/AddTextDialogBinding.java
+ album.databinding.AddTextDialogBinding
+album/databinding/FragmentBottomPropertiesDialogBinding.java
+ album.databinding.FragmentBottomPropertiesDialogBinding
+com/paulbaker/album/feature/home/adapter/HomeAdapter.java
+ com.paulbaker.album.feature.home.adapter.HomeAdapter
+ com.paulbaker.album.feature.home.adapter.HomeAdapter$RootViewHolder
+album/databinding/ItemEditingToolsBinding.java
+ album.databinding.ItemEditingToolsBinding
+album/databinding/FragmentEditBinding.java
+ album.databinding.FragmentEditBinding
+com/paulbaker/album/feature/home/section/PhotoSection.java
+ com.paulbaker.album.feature.home.section.PhotoSection
+ com.paulbaker.album.feature.home.section.PhotoSection$ClickListener
+ com.paulbaker.album.feature.home.section.PhotoSection$HeaderViewHolder
+ com.paulbaker.album.feature.home.section.PhotoSection$ItemPhotoUpdate
+ com.paulbaker.album.feature.home.section.PhotoSection$ItemViewHolder
+album/databinding/RowStickerBinding.java
+ album.databinding.RowStickerBinding
+com/paulbaker/album/core/platform/SectionAdapter.java
+ com.paulbaker.album.core.platform.SectionAdapter
+album/databinding/ColorPickerItemListBinding.java
+ album.databinding.ColorPickerItemListBinding
+album/BuildConfig.java
+ album.BuildConfig
+com/paulbaker/album/feature/view/delete/DeletePhotoFragment.java
+ com.paulbaker.album.feature.view.delete.DeletePhotoFragment
+ com.paulbaker.album.feature.view.delete.DeletePhotoFragment$OnActionDialog
+com/paulbaker/album/feature/edit/tools/ShapeBSFragment.java
+ com.paulbaker.album.feature.edit.tools.ShapeBSFragment
+ com.paulbaker.album.feature.edit.tools.ShapeBSFragment$Properties
+com/paulbaker/album/feature/edit/tools/StickerBSFragment.java
+ com.paulbaker.album.feature.edit.tools.StickerBSFragment
+ com.paulbaker.album.feature.edit.tools.StickerBSFragment$1
+ com.paulbaker.album.feature.edit.tools.StickerBSFragment$StickerAdapter
+ com.paulbaker.album.feature.edit.tools.StickerBSFragment$StickerAdapter$ViewHolder
+ com.paulbaker.album.feature.edit.tools.StickerBSFragment$StickerAdapter$ViewHolder$1
+ com.paulbaker.album.feature.edit.tools.StickerBSFragment$StickerListener
+album/databinding/ItemRootBinding.java
+ album.databinding.ItemRootBinding
+album/databinding/ItemHeaderBinding.java
+ album.databinding.ItemHeaderBinding
+com/paulbaker/album/feature/edit/ToolType.java
+ com.paulbaker.album.feature.edit.ToolType
+com/paulbaker/album/core/utils/Utils.java
+ com.paulbaker.album.core.utils.Utils
+com/paulbaker/album/data/models/Photo.java
+ com.paulbaker.album.data.models.Photo
+album/databinding/FragmentBottomStickerEmojiDialogBinding.java
+ album.databinding.FragmentBottomStickerEmojiDialogBinding
+album/databinding/FragmentViewPhotoBinding.java
+ album.databinding.FragmentViewPhotoBinding
+com/paulbaker/album/core/platform/SectionedRecyclerViewAdapter.java
+ com.paulbaker.album.core.platform.SectionedRecyclerViewAdapter
+ com.paulbaker.album.core.platform.SectionedRecyclerViewAdapter$1
+com/paulbaker/album/feature/edit/EditFragment.java
+ com.paulbaker.album.feature.edit.EditFragment
+ com.paulbaker.album.feature.edit.EditFragment$1
+ com.paulbaker.album.feature.edit.EditFragment$2
+com/paulbaker/album/core/constants/Constants.java
+ com.paulbaker.album.core.constants.Constants
+com/paulbaker/album/feature/edit/adapter/ColorPickerAdapter.java
+ com.paulbaker.album.feature.edit.adapter.ColorPickerAdapter
+ com.paulbaker.album.feature.edit.adapter.ColorPickerAdapter$OnColorPickerClickListener
+ com.paulbaker.album.feature.edit.adapter.ColorPickerAdapter$ViewHolder
+ com.paulbaker.album.feature.edit.adapter.ColorPickerAdapter$ViewHolder$1
+album/databinding/FragmentHomeBinding.java
+ album.databinding.FragmentHomeBinding
+com/paulbaker/album/feature/view/adapter/ViewPagerAdapter.java
+ com.paulbaker.album.feature.view.adapter.ViewPagerAdapter
+album/databinding/RowEmojiBinding.java
+ album.databinding.RowEmojiBinding
+com/paulbaker/album/core/platform/SectionNotifier.java
+ com.paulbaker.album.core.platform.SectionNotifier
+com/paulbaker/album/feature/edit/adapter/FilterViewAdapter.java
+ com.paulbaker.album.feature.edit.adapter.FilterViewAdapter
+ com.paulbaker.album.feature.edit.adapter.FilterViewAdapter$ViewHolder
+ com.paulbaker.album.feature.edit.adapter.FilterViewAdapter$ViewHolder$1

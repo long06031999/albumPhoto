@@ -1,0 +1,330 @@
+[
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_love_red.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_love_red.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_slide_top.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\slide_top.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_launch_screen.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\launch_screen.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_home.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_bottom_sticker_emoji_dialog.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\fragment_bottom_sticker_emoji_dialog.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_no_data.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\no_data.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxxhdpi_ic_text.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_text.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_pager.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\fragment_pager.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_slide_left.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\slide_left.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_close.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_close.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_fade_out.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\fade_out.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_edit.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\fragment_edit.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_delete.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_delete.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_row_filter_view.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\row_filter_view.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap_ic_logo.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap\\ic_logo.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_rounded_border_text_view.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\rounded_border_text_view.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_back.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_back.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_unchecked.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\unchecked.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_options.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_options.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\font_roboto_medium.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\font\\roboto_medium.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_item_photo.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\item_photo.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_bottom_shapes_dialog.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\fragment_bottom_shapes_dialog.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_redo.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_redo.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\xml_provider_paths.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_visibility.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_visibility.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_aa.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\aa.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_zoom_out.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\zoom_out.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_wait_anim.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\wait_anim.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\navigation_nav_graph.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_rotate.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_rotate.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_item_editing_tools.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\item_editing_tools.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_bg_corner_blue.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-v24\\bg_corner_blue.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_checked.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\checked.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_search.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_search.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_item_photo_bound.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\item_photo_bound.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_item_horizon.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\item_horizon.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_undo.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_undo.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_view_photo.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\fragment_view_photo.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_add_text_dialog.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\add_text_dialog.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxxhdpi_ic_photo_filter.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_photo_filter.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_slide_right.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\slide_right.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxxhdpi_ic_oval.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_oval.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_share.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_share.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_slide_bottom.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\slide_bottom.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_row_emoji.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\row_emoji.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_custom_checkbox.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\custom_checkbox.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxxhdpi_ic_eraser.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_eraser.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_row_sticker.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\row_sticker.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxxhdpi_ic_insert_emoticon.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_insert_emoticon.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-xxxhdpi_ic_sticker.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_sticker.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_love_black.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_love_black.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_bottom_sheet_delete_photo.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\bottom_sheet_delete_photo.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_fade_in.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\fade_in.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_item_root.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\item_root.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_color_picker_item_list.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\color_picker_item_list.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_save.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_save.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_blank_image.jpg.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\blank_image.jpg"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_item_header.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\item_header.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_gallery.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_gallery.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_edit.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_edit.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_rounded_dialog.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\rounded_dialog.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\anim_zoom_in.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\anim\\zoom_in.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_bottom_properties_dialog.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\layout\\fragment_bottom_properties_dialog.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_photo.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_photo.png"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_camera.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_camera.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_brush.xml.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\ic_brush.xml"
+    },
+    {
+        "merged": "E:\\Android\\albumPhoto\\app\\build\\intermediates\\merged_res\\debug\\drawable_bb.png.flat",
+        "source": "E:\\Android\\albumPhoto\\app\\src\\main\\res\\drawable\\bb.png"
+    }
+]
