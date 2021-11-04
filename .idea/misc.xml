@@ -45,10 +45,13 @@
         <entry key="..\:/Album/app/src/main/res/layout/row_filter_view.xml" value="0.1921875" />
         <entry key="..\:/Album/app/src/main/res/layout/row_sticker.xml" value="0.1" />
         <entry key="..\:/Album/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20833333333333334" />
+        <entry key="..\:/Android/albumPhoto/app/src/main/res/layout/activity_main.xml" value="0.152" />
+        <entry key="..\:/Android/albumPhoto/app/src/main/res/layout/add_text_dialog.xml" value="0.25" />
+        <entry key="..\:/Android/albumPhoto/app/src/main/res/layout/bottom_sheet_delete_photo.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
