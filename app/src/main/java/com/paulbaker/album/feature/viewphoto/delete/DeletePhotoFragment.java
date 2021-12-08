@@ -19,6 +19,7 @@ import com.paulbaker.album.core.constants.Constants;
 import com.paulbaker.album.core.platform.BottomSheetDialogCorner;
 import com.paulbaker.album.data.models.MediaStoreImage;
 import com.paulbaker.album.feature.viewmodel.EditViewModel;
+import com.paulbaker.album.feature.viewmodel.HomeViewModel;
 
 import album.R;
 import album.databinding.BottomSheetDeletePhotoBinding;
@@ -28,6 +29,7 @@ public class DeletePhotoFragment extends BottomSheetDialogCorner implements View
     private OnActionDialog onActionDialog;
     private MediaStoreImage photo;
     private EditViewModel editViewModel;
+    private HomeViewModel viewModel;
 
     @Nullable
     @Override
@@ -40,6 +42,7 @@ public class DeletePhotoFragment extends BottomSheetDialogCorner implements View
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         editViewModel = new ViewModelProvider(requireActivity()).get(EditViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         setupListener();
         getParam();
         observerPermissionForDelete();

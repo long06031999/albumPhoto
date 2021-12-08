@@ -36,7 +36,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.RootViewHolder
     }
 
 
-
     @NonNull
     @Override
     public RootViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

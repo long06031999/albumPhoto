@@ -28,13 +28,9 @@ public class DeletePhotoAsyncTask extends AsyncTask<MediaStoreImage, Void, Void>
     @Override
     protected Void doInBackground(MediaStoreImage... mediaStoreImages) {
         try {
-            String[] selectionArgs = new String[]{
-                    mediaStoreImages[0].getId().toString()
-            };
             application.getContentResolver()
                     .delete(mediaStoreImages[0].getContentUri(),
-                            "${MediaStore.Images.Media._ID} = ?",
-                            selectionArgs);
+                            null,null);
             callBackForDeletePhoto.onSuccess();
         } catch (SecurityException securityException) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

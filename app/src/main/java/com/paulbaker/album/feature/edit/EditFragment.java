@@ -247,7 +247,7 @@ public class EditFragment extends Fragment implements
         if (fragment == null || fragment.isAdded()) {
             return;
         }
-        fragment.show(getChildFragmentManager(), fragment.getTag());
+        fragment.show(getChildFragmentManager(), fragment.getClass().getName());
     }
 
     void showFilter(boolean isVisible) {

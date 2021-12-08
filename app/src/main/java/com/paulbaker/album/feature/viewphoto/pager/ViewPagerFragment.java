@@ -71,4 +71,5 @@ public class ViewPagerFragment extends Fragment {
             outState.putParcelable(BUNDLE_URI, uri);
         }
     }
+
 }
