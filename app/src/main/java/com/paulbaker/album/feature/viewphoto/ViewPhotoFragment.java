@@ -8,10 +8,13 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +44,9 @@ import com.paulbaker.album.feature.viewphoto.delete.DeletePhotoFragment;
 import com.paulbaker.album.feature.viewmodel.EditViewModel;
 import com.paulbaker.album.feature.viewmodel.HomeViewModel;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -223,19 +228,23 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
         }
     }
 
-    private void shareImage() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setDataAndType(buildFileProviderUri(requireContext(), photo.getContentUri()), "image/*");
-        intent.putExtra(Intent.EXTRA_STREAM, buildFileProviderUri(requireContext(), photo.getContentUri()));
-        startActivity(intent);
+    private void shareImage()  {
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), photo.getContentUri());
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("image/jpeg");
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), bitmap, "Title", null);
+            Uri imageUri =  Uri.parse(path);
+            share.putExtra(Intent.EXTRA_STREAM, imageUri);
+            startActivity(Intent.createChooser(share, "Select"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(requireContext(),"cannot share image",Toast.LENGTH_LONG).show();
+        }
     }
-
-    public Uri buildFileProviderUri(Context context, @NonNull Uri uri) {
-        return FileProvider.getUriForFile(context,
-                context.getPackageName() + ".provider",
-                new File(uri.getPath()));
-    }
-
 
     //dialog Delete
     @SuppressLint("NotifyDataSetChanged")
