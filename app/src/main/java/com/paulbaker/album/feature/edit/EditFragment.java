@@ -30,6 +30,7 @@ import androidx.transition.TransitionManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.paulbaker.album.core.platform.ImageSaver;
+import com.paulbaker.album.core.utils.Utils;
 import com.paulbaker.album.data.models.MediaStoreImage;
 import com.paulbaker.album.feature.edit.adapter.EditingToolsAdapter;
 import com.paulbaker.album.feature.edit.adapter.FilterViewAdapter;
@@ -43,6 +44,7 @@ import com.paulbaker.album.feature.viewmodel.HomeViewModel;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 
 import album.R;
 import album.databinding.FragmentEditBinding;
@@ -342,10 +344,18 @@ public class EditFragment extends Fragment implements
         mPhotoEditor.saveAsBitmap(new OnSaveBitmap() {
             @Override
             public void onBitmapReady(Bitmap saveBitmap) {
-                new ImageSaver(requireContext()).
-                        setFileName(requireActivity().getPackageName() + Calendar.getInstance().getTime() + ".png").
-                        setDirectoryName(requireContext().getResources().getString(R.string.app_name)).
-                        save(saveBitmap);
+                try {
+                    Uri uri = Utils.saveImage(requireContext(), saveBitmap, requireContext().getResources().getString(R.string.app_name) + Calendar.getInstance().getTime());
+                    viewModel.setPhoto(new MediaStoreImage(
+                            (long) saveBitmap.getGenerationId(),
+                            requireContext().getResources().getString(R.string.app_name) + Calendar.getInstance().getTime(),
+                            Calendar.getInstance().getTime(),
+                            uri
+                    ));
+                    Navigation.findNavController(binding.getRoot()).popBackStack();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
