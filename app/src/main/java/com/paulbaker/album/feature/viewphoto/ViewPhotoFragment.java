@@ -1,15 +1,27 @@
 package com.paulbaker.album.feature.viewphoto;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +33,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.paulbaker.album.MainActivity;
 import com.paulbaker.album.core.constants.Constants;
 import com.paulbaker.album.core.utils.Utils;
 import com.paulbaker.album.data.models.MediaStoreImage;
@@ -31,7 +44,9 @@ import com.paulbaker.album.feature.viewphoto.delete.DeletePhotoFragment;
 import com.paulbaker.album.feature.viewmodel.EditViewModel;
 import com.paulbaker.album.feature.viewmodel.HomeViewModel;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,8 +116,11 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
         binding.viewPager.addOnPageChangeListener(this);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void loadAllPhoto() {
         viewModel.listPhoto.observe(getViewLifecycleOwner(), item -> {
+            listData.clear();
+            dataRaw.clear();
             addData(item);
             setupViewPager();
             setUpAdapter();
@@ -130,7 +148,7 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
 
     private void setupViewPager() {
         viewPagerAdapter = new ViewPagerAdapter(
-                requireActivity().getSupportFragmentManager(), listData);
+                getChildFragmentManager(), listData);
         binding.viewPager.setAdapter(viewPagerAdapter);
     }
 
@@ -197,7 +215,7 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(Constants.KEY_DELETE_PHOTO, photo);
                 deletePhotoFragment.setArguments(bundle);
-                deletePhotoFragment.show(getChildFragmentManager(), deletePhotoFragment.getTag());
+                deletePhotoFragment.show(getChildFragmentManager(), deletePhotoFragment.getClass().getName());
                 break;
             case R.id.btnEdit:
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.navigateToEditPhoto);
@@ -210,28 +228,40 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
         }
     }
 
-    private void shareImage() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setDataAndType(buildFileProviderUri(requireContext(), photo.getContentUri()), "image/*");
-        intent.putExtra(Intent.EXTRA_STREAM, buildFileProviderUri(requireContext(), photo.getContentUri()));
-        startActivity(intent);
+    private void shareImage()  {
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), photo.getContentUri());
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("image/jpeg");
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), bitmap, "Title", null);
+            Uri imageUri =  Uri.parse(path);
+            share.putExtra(Intent.EXTRA_STREAM, imageUri);
+            startActivity(Intent.createChooser(share, "Select"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(requireContext(),"cannot share image",Toast.LENGTH_LONG).show();
+        }
     }
-
-    public Uri buildFileProviderUri(Context context, @NonNull Uri uri) {
-        return FileProvider.getUriForFile(context,
-                context.getPackageName() + ".provider",
-                new File(uri.getPath()));
-    }
-
 
     //dialog Delete
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onDeleteSuccess() {
-        Log.d("TAG", "onDeleteSuccess: ");
+        deletePhotoFragment.dismiss();
+        requireActivity().runOnUiThread(() -> {
+            int position  = listData.indexOf(photo);
+            listData.remove(photo);
+            adapter.notifyDataSetChanged();
+            viewPagerAdapter.notifyDataSetChanged();
+            viewModel.setPhoto(listData.get(position));
+        });
     }
 
     @Override
     public void onCancel() {
-        Log.d("TAG", "onCancel: ");
+        deletePhotoFragment.dismiss();
     }
 }

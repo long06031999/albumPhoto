@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +29,7 @@ import androidx.transition.ChangeBounds;
 import androidx.transition.TransitionManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.paulbaker.album.core.platform.ImageSaver;
 import com.paulbaker.album.data.models.MediaStoreImage;
 import com.paulbaker.album.feature.edit.adapter.EditingToolsAdapter;
 import com.paulbaker.album.feature.edit.adapter.FilterViewAdapter;
@@ -40,10 +42,12 @@ import com.paulbaker.album.feature.viewmodel.EditViewModel;
 import com.paulbaker.album.feature.viewmodel.HomeViewModel;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import album.R;
 import album.databinding.FragmentEditBinding;
 import ja.burhanrashid52.photoeditor.OnPhotoEditorListener;
+import ja.burhanrashid52.photoeditor.OnSaveBitmap;
 import ja.burhanrashid52.photoeditor.PhotoEditor;
 import ja.burhanrashid52.photoeditor.PhotoFilter;
 import ja.burhanrashid52.photoeditor.TextStyleBuilder;
@@ -247,7 +251,7 @@ public class EditFragment extends Fragment implements
         if (fragment == null || fragment.isAdded()) {
             return;
         }
-        fragment.show(getChildFragmentManager(), fragment.getTag());
+        fragment.show(getChildFragmentManager(), fragment.getClass().getName());
     }
 
     void showFilter(boolean isVisible) {
@@ -335,6 +339,20 @@ public class EditFragment extends Fragment implements
     }
 
     private void saveImage() {
+        mPhotoEditor.saveAsBitmap(new OnSaveBitmap() {
+            @Override
+            public void onBitmapReady(Bitmap saveBitmap) {
+                new ImageSaver(requireContext()).
+                        setFileName(requireActivity().getPackageName() + Calendar.getInstance().getTime() + ".png").
+                        setDirectoryName(requireContext().getResources().getString(R.string.app_name)).
+                        save(saveBitmap);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
     }
 
     @Override

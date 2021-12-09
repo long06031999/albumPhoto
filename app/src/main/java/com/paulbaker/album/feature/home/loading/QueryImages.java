@@ -53,7 +53,7 @@ public class QueryImages extends AsyncTask<Void, Void, List<MediaStoreImage>> {
         int dateModifiedColumn =cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED);
         int displayNameColumn =cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
         while (cursor.moveToNext()){
-            Long id =cursor.getLong(idColumn);
+            long id =cursor.getLong(idColumn);
             Date dateModified=new Date(TimeUnit.SECONDS.toMillis(cursor.getLong(dateModifiedColumn)));
             String displayName= cursor.getString(displayNameColumn);
             Uri contentUri= ContentUris.withAppendedId(
