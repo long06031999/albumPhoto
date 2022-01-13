@@ -113,7 +113,6 @@ public class HomeFragment extends Fragment implements
             };
             ActivityCompat.requestPermissions(requireActivity(), permissions, READ_EXTERNAL_STORAGE_REQUEST);
         }
-
     }
 
 

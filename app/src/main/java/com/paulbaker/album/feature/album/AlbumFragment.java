@@ -1,16 +1,32 @@
 package com.paulbaker.album.feature.album;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import static android.os.Build.VERSION.SDK_INT;
+import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static com.paulbaker.album.core.constants.Constants.READ_EXTERNAL_STORAGE_REQUEST;
+
 import android.content.ContentUris;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -18,12 +34,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.paulbaker.album.MainActivity;
 import com.paulbaker.album.core.utils.Utils;
-import com.paulbaker.album.data.models.Album;
 import com.paulbaker.album.data.models.MediaStoreImage;
 import com.paulbaker.album.data.models.Photo;
 import com.paulbaker.album.feature.album.adapter.AlbumAdapter;
 import com.paulbaker.album.feature.album.adapter.onItemAlbumClick;
-import com.paulbaker.album.feature.album.fragment.ViewAlbumFragment;
 import com.paulbaker.album.feature.album.viewmodel.AlbumViewModel;
 
 import java.util.ArrayList;
@@ -53,9 +67,98 @@ public class AlbumFragment extends Fragment implements onItemAlbumClick {
         super.onViewCreated(view, savedInstanceState);
         albumViewModel = new ViewModelProvider(requireActivity()).get(AlbumViewModel.class);
         setupAdapter();
-        querySecureImageFolder();
+
         ((MainActivity) getActivity()).showTabBarLayout(View.VISIBLE);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadAllAlbum();
+    }
+
+    private void loadAllAlbum() {
+        if (haveStoragePermission()) {
+            queryAlbum();
+        } else {
+            requestPermission();
+        }
+    }
+
+    private boolean haveStoragePermission() {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
+        } else {
+            int result = ContextCompat.checkSelfPermission(requireContext(), READ_EXTERNAL_STORAGE);
+            int result1 = ContextCompat.checkSelfPermission(requireContext(), WRITE_EXTERNAL_STORAGE);
+            return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
+        }
+    }
+
+    private void requestPermission() {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse(String.format("package:%s",requireContext().getApplicationContext().getPackageName())));
+                startActivityForResult(intent, READ_EXTERNAL_STORAGE_REQUEST);
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivityForResult(intent, READ_EXTERNAL_STORAGE_REQUEST);
+            }
+        } else {
+            //below android 11
+            String[] permissions = new String[]{
+                    READ_EXTERNAL_STORAGE,
+                    WRITE_EXTERNAL_STORAGE
+            };
+            ActivityCompat.requestPermissions(requireActivity(), permissions, READ_EXTERNAL_STORAGE_REQUEST);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.d("TAG", "onRequestPermissionsResult: "+requestCode);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == READ_EXTERNAL_STORAGE_REQUEST) {
+            if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
+                queryAlbum();
+            } else {
+                boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(),
+                        READ_EXTERNAL_STORAGE);
+                if (showRationale) {
+
+                } else {
+                    goToSettings();
+                }
+            }
+        }
+    }
+
+    private void goToSettings() {
+        Intent intent = new Intent(ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.parse("package:" + requireContext().getPackageName()));
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == READ_EXTERNAL_STORAGE_REQUEST) {
+            if (SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                    loadAllAlbum();
+                } else {
+                    Toast.makeText(requireContext(), "Allow permission for storage access!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
 
     private void setupAdapter() {
         albumAdapter = new AlbumAdapter(requireContext(), data, Utils.getDeviceWidth(requireContext()), this);
@@ -63,7 +166,7 @@ public class AlbumFragment extends Fragment implements onItemAlbumClick {
         binding.rcvAlbum.setAdapter(albumAdapter);
     }
 
-    private void querySecureImageFolder() {
+    private void queryAlbum() {
         ArrayList<String> albumName = new ArrayList<>();
         String[] projection = new String[]{
                 MediaStore.Images.Media._ID,

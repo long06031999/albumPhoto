@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnticipateOvershootInterpolator;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -43,6 +44,8 @@ import com.paulbaker.album.feature.edit.tools.TextEditorDialogFragment;
 import com.paulbaker.album.feature.viewmodel.EditViewModel;
 import com.paulbaker.album.feature.viewmodel.HomeViewModel;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -312,7 +315,7 @@ public class EditFragment extends Fragment implements
                 handleClose();
                 break;
             case R.id.imgShare:
-                //shareImage();
+                shareImage();
                 break;
 
             case R.id.imgCamera:
@@ -327,6 +330,28 @@ public class EditFragment extends Fragment implements
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_REQUEST);
                 break;
         }
+    }
+
+
+    private void shareImage() {
+        mPhotoEditor.saveAsBitmap(new OnSaveBitmap() {
+            @Override
+            public void onBitmapReady(Bitmap saveBitmap) {
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("image/jpeg");
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                saveBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), saveBitmap, "Title", null);
+                Uri imageUri = Uri.parse(path);
+                share.putExtra(Intent.EXTRA_STREAM, imageUri);
+                startActivity(Intent.createChooser(share, "Select"));
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Toast.makeText(requireContext(),"Cannot share image!!",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void handleClose() {
