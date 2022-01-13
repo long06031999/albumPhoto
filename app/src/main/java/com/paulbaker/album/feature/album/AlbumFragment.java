@@ -135,5 +135,6 @@ public class AlbumFragment extends Fragment implements onItemAlbumClick {
     public void onClick(View view, Photo album) {
         albumViewModel.setListPhoto(album.getItems());
         Navigation.findNavController(view).navigate(R.id.navigateToViewAlbum);
+        albumViewModel.setTitle(album.getTitle());
     }
 }

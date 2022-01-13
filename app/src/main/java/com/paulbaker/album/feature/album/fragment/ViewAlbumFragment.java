@@ -79,6 +79,10 @@ public class ViewAlbumFragment extends Fragment implements onItemAlbumClick, OnI
 
     @SuppressLint("NotifyDataSetChanged")
     private void setupObserver() {
+        albumViewModel.title.observe(getViewLifecycleOwner(), title -> {
+            binding.titleHome.setText(title);
+        });
+
         albumViewModel.listPhoto.observe(getViewLifecycleOwner(), item -> {
             data.clear();
             data.addAll(item);
@@ -88,13 +92,12 @@ public class ViewAlbumFragment extends Fragment implements onItemAlbumClick, OnI
         albumViewModel.listAlbum.observe(getViewLifecycleOwner(), item -> {
             dataGroup.addAll(item);
             albumAdapter.notifyDataSetChanged();
-            binding.titleHome.setText(item.get(0).getTitle());
         });
 
     }
 
     private void setupAdapter() {
-        albumAdapter = new AlbumAdapter(requireContext(), dataGroup, Utils.getDeviceWidth(requireContext()), this,true);
+        albumAdapter = new AlbumAdapter(requireContext(), dataGroup, Utils.getDeviceWidth(requireContext()), this, true);
         binding.rcvAlbumGroup.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         binding.rcvAlbumGroup.setAdapter(albumAdapter);
 
@@ -111,7 +114,7 @@ public class ViewAlbumFragment extends Fragment implements onItemAlbumClick, OnI
     }
 
     @Override
-    public void onItemPhotoClick(View view,MediaStoreImage photo) {
+    public void onItemPhotoClick(View view, MediaStoreImage photo) {
         homeViewModel.setPhoto(photo);
         homeViewModel.setListPhoto(dataGroup);
         Navigation.findNavController(view).navigate(R.id.navigateToViewPhoto);
@@ -120,7 +123,7 @@ public class ViewAlbumFragment extends Fragment implements onItemAlbumClick, OnI
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnBack:
                 Navigation.findNavController(v).popBackStack();
                 break;
