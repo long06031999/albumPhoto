@@ -1,31 +1,30 @@
 package com.paulbaker.album.feature.viewphoto;
 
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
-import android.graphics.Rect;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Pair;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -39,22 +38,26 @@ import com.paulbaker.album.core.utils.Utils;
 import com.paulbaker.album.data.models.MediaStoreImage;
 import com.paulbaker.album.data.models.Photo;
 import com.paulbaker.album.feature.home.adapter.HorizonAdapter;
+import com.paulbaker.album.feature.secure.SecureFragment;
 import com.paulbaker.album.feature.viewphoto.adapter.ViewPagerAdapter;
 import com.paulbaker.album.feature.viewphoto.delete.DeletePhotoFragment;
 import com.paulbaker.album.feature.viewmodel.EditViewModel;
 import com.paulbaker.album.feature.viewmodel.HomeViewModel;
+import com.paulbaker.album.feature.viewphoto.detail.DetailPhotoDialog;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import album.R;
 import album.databinding.FragmentViewPhotoBinding;
 
 public class ViewPhotoFragment extends Fragment implements HorizonAdapter.ListenerItemClick,
-        ViewPager.OnPageChangeListener, View.OnClickListener, DeletePhotoFragment.OnActionDialog {
+        ViewPager.OnPageChangeListener, View.OnClickListener, DeletePhotoFragment.OnActionDialog,
+        View.OnCreateContextMenuListener {
     private FragmentViewPhotoBinding binding;
     private HomeViewModel viewModel;
     private EditViewModel editViewModel;
@@ -82,6 +85,9 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
         loadAllPhoto();
         handleSlideViewPager();
         handleClickViewPager();
+        registerForContextMenu(binding.btnOptions);
+        ((MainActivity) getActivity()).showTabBarLayout(View.GONE);
+        handleOnBackPress();
     }
 
     private void setupClickListener() {
@@ -89,7 +95,6 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
         binding.btnBack.setOnClickListener(this);
         binding.btnDelete.setOnClickListener(this);
         binding.btnEdit.setOnClickListener(this);
-        binding.btnLove.setOnClickListener(this);
         binding.btnShare.setOnClickListener(this);
         binding.btnOptions.setOnClickListener(this);
         binding.btnSearch.setOnClickListener(this);
@@ -223,13 +228,52 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
             case R.id.btnShare:
                 shareImage();
                 break;
+            case R.id.btnOptions:
+                showContextMenuOptions(view);
+                break;
             default:
                 break;
         }
     }
 
-    private void shareImage()  {
-        Bitmap bitmap = null;
+    private void showContextMenuOptions(View v) {
+        v.showContextMenu(v.getX(), v.getY());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        menu.add("Chi tiết").setOnMenuItemClickListener(item -> {
+                    DetailPhotoDialog detail = new DetailPhotoDialog();
+                    detail.show(getChildFragmentManager(), DetailPhotoDialog.class.getName());
+                    String path = Utils.getRealPathFromUri(requireContext(), photo.getContentUri());
+                    viewModel.setDetailPhoto(new
+                            Pair(photo.getDateAdded().toString(),
+                            photo.getDisplayName() + "\n" +
+                                    path.replace(photo.getDisplayName(), "") + "\n" +
+                                    Utils.getImageSize(requireContext(), photo.getContentUri()) / 1000 +
+                                    "KB  " + Utils.getResolutionImage(requireContext(), photo.getContentUri())));
+                    return true;
+                }
+
+        );
+        menu.add("Đặt làm hình nền").setOnMenuItemClickListener(item -> {
+                    final WallpaperManager wallpaperManager = WallpaperManager.getInstance(requireActivity().getApplicationContext());
+                    Bitmap bitmap;
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), photo.getContentUri());
+                        wallpaperManager.setBitmap(bitmap, null, false, WallpaperManager.FLAG_SYSTEM);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Toast.makeText(requireContext(), "Cannot set this photo to wallpaper", Toast.LENGTH_LONG).show();
+                    }
+                    return true;
+                }
+        );
+    }
+
+    private void shareImage() {
+        Bitmap bitmap;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), photo.getContentUri());
             Intent share = new Intent(Intent.ACTION_SEND);
@@ -237,12 +281,12 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
             String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), bitmap, "Title", null);
-            Uri imageUri =  Uri.parse(path);
+            Uri imageUri = Uri.parse(path);
             share.putExtra(Intent.EXTRA_STREAM, imageUri);
             startActivity(Intent.createChooser(share, "Select"));
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(requireContext(),"cannot share image",Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), "cannot share image", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -252,7 +296,7 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
     public void onDeleteSuccess() {
         deletePhotoFragment.dismiss();
         requireActivity().runOnUiThread(() -> {
-            int position  = listData.indexOf(photo);
+            int position = listData.indexOf(photo);
             listData.remove(photo);
             adapter.notifyDataSetChanged();
             viewPagerAdapter.notifyDataSetChanged();
@@ -263,5 +307,14 @@ public class ViewPhotoFragment extends Fragment implements HorizonAdapter.Listen
     @Override
     public void onCancel() {
         deletePhotoFragment.dismiss();
+    }
+
+    private void handleOnBackPress() {
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(binding.getRoot()).popBackStack();
+            }
+        });
     }
 }

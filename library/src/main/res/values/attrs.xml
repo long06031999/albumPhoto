@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PBButton">
+        <attr name="pbb_bg_disable" format="reference"/>
+        <attr name="pbb_bg_enable" format="reference"/>
+        <attr name="pbb_bg_press" format="reference"/>
+        <attr name="pbb_text_color_enable" format="integer|color"/>
+        <attr name="pbb_text_color_disable" format="color"/>
+    </declare-styleable>
+</resources>

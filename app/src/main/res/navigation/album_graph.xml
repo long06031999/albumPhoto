@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/album_graph"
+    app:startDestination="@+id/navigation_album">
+    <fragment
+        android:id="@+id/navigation_album"
+        android:name="com.paulbaker.album.feature.album.AlbumFragment"
+        tools:layout="@layout/album_fragment">
+        <action
+            android:id="@+id/navigateToViewAlbum"
+            app:destination="@+id/fragmentViewAlbum" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentViewAlbum"
+        android:name="com.paulbaker.album.feature.album.fragment.ViewAlbumFragment"
+        tools:layout="@layout/view_album_fragment">
+        <action
+            android:id="@+id/navigateToViewPhoto"
+            app:destination="@+id/fragmentViewPhoto"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentViewPhoto"
+        android:name="com.paulbaker.album.feature.viewphoto.ViewPhotoFragment"
+        tools:layout="@layout/fragment_view_photo">
+        <action
+            android:id="@+id/navigateToEditPhoto"
+            app:destination="@+id/fragmentEdit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentEdit"
+        android:name="com.paulbaker.album.feature.edit.EditFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_edit">
+    </fragment>
+</navigation>

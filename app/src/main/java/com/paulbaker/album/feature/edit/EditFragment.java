@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnticipateOvershootInterpolator;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -104,6 +105,16 @@ public class EditFragment extends Fragment implements
         observerPhoto();
         prepareEditor();
         setCallBackForEditor();
+        handleOnBackPress();
+    }
+
+    private void handleOnBackPress() {
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(binding.getRoot()).popBackStack();
+            }
+        });
     }
 
 

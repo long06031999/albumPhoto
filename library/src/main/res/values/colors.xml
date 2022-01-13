@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorTransparent">#00FF0000</color>
+    <color name="pb_button_disabled_text_color">#CCCCCC</color>
+    <color name="pb_button_enabled_text_color">#FFFFFF</color>
+    <color name="black_color">#212121</color>
+    <color name="pb_button_enable_text_color_type_1">#FFFFFF</color>
+
+</resources>

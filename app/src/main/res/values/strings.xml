@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Photo</string>
     <string name="title_home" translatable="false">Home</string>
+    <string name="title_album" translatable="false">Album</string>
     <string name="photo">Hình ảnh</string>
     <string name="delete">Xoá</string>
     <string name="cancel">Thoát</string>

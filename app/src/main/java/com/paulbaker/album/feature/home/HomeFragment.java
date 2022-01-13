@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -80,6 +81,7 @@ public class HomeFragment extends Fragment implements
         setUpAdapter();
         onHideCheckBoxMode();
         handleTitleToolBar();
+        ((MainActivity) getActivity()).showTabBarLayout(View.VISIBLE);
     }
 
 
@@ -281,5 +283,4 @@ public class HomeFragment extends Fragment implements
         super.onDestroyView();
         binding = null;
     }
-
 }
